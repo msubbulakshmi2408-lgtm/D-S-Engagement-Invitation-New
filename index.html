@@ -37,6 +37,7 @@
         
         .section { 
             min-height: 100vh; 
+            height: 100vh;
             width: 100%; 
             display: flex; 
             flex-direction: column; 
@@ -45,12 +46,12 @@
             position: relative; 
             scroll-snap-align: start; 
             scroll-snap-stop: always; 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat;
+            background-size: 100% 100% !important; 
+            background-position: center !important; 
+            background-repeat: no-repeat !important;
         }
 
-        /* Envelope overlay high z-index */
+        /* Envelope overlay high z-index with cache-buster query string */
         #section-envelope { 
             position: absolute;
             top: 0;
@@ -59,19 +60,19 @@
             height: 100%;
             z-index: 40;
             cursor: pointer;
-            background-image: url('page-envelope.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: url('page-envelope.png?v=2');
+            background-size: 100% 100% !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
             transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.0s ease;
             transform-origin: center center;
         }
 
-        /* Direct image URLs matching GitHub repository */
-        #section-page1 { background-image: url('page-1.png'); }
-        #section-page2 { background-image: url('page-2.png'); }
+        /* Direct image URLs with cache-buster string attached */
+        #section-page1 { background-image: url('page-1.png?v=2'); }
+        #section-page2 { background-image: url('page-2.png?v=2'); }
         #section-page3 { 
-            background-image: url('page-3.png'); 
+            background-image: url('page-3.png?v=2'); 
             justify-content: flex-start;
             padding-top: 220px; 
             padding-bottom: 25px;
@@ -324,7 +325,6 @@
             particlesContainer.appendChild(glitter);
         }
 
-        // Attach envelope click handler directly in script
         const sectionEnvelope = document.getElementById('section-envelope');
         sectionEnvelope.addEventListener('click', openEnvelope);
 
