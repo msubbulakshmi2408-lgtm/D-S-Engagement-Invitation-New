@@ -18,7 +18,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-burgundy); color: var(--text-light); min-height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
 
-        /* Falling Petals and Glitter from reference file */
+        /* Falling Petals and Glitter */
         .petal { position: fixed; top: -10vh; background: radial-gradient(circle, #f3e5ab 0%, #cbd5e1 100%); border-radius: 150% 0 150% 0; opacity: 0.85; z-index: 25; animation: fall linear infinite; pointer-events: none; }
         .glitter { position: fixed; top: -10vh; background: #f3e5ab; width: 4px; height: 4px; border-radius: 50%; box-shadow: 0 0 6px #d4af37; opacity: 0.9; z-index: 25; animation: fall linear infinite; pointer-events: none; }
         @keyframes fall {
@@ -37,21 +37,19 @@
         
         .section { min-height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; scroll-snap-align: start; scroll-snap-stop: always; background-size: cover; background-position: center; background-color: #3a0d16; }
 
-        /* Backgrounds for individual sheets */
-        #section-page1 { background-image: url('Untitled - August 16, 2026 at 16.56.49-5 (1).png'); }
-        #section-page2 { background-image: url('Untitled - August 16, 2026 at 16.56.49-6.png'); }
+        /* Corrected paths matching GitHub repository names */
+        #section-page1 { background-image: url('page1.png'); }
+        #section-page2 { background-image: url('page2.png'); }
         
-        /* SHEET 3: Exact layout and map positioning locked */
         #section-page3 { 
-            background-image: url('Untitled - August 16, 2026 at 16.56.49-7.png'); 
+            background-image: url('page3.png'); 
             justify-content: flex-start;
             padding-top: 220px; 
             padding-bottom: 25px;
         }
 
-        /* Pure image entry page with slow smooth video-like opening scale/fade transition */
         #section-envelope { 
-            background-image: url('Untitled - August 16, 2026 at 16.56.49-4 (1).png');
+            background-image: url('envelope.png');
             background-size: cover;
             background-position: center;
             position: absolute;
@@ -71,7 +69,6 @@
             pointer-events: none;
         }
 
-        /* Scratch Card Box: curved rectangle with a solid golden outline, rendered instantly */
         .scratch-box { 
             position: relative; 
             width: 320px; 
@@ -90,7 +87,6 @@
         .scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; transition: opacity 0.5s ease; border-radius: 14px; }
         .scratch-reveal-text { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold-light); text-align: center; line-height: 1.3; font-weight: 600; }
 
-        /* Countdown Section */
         .countdown-wrapper-section { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.8s ease, opacity 0.8s ease; width: 100%; text-align: center; margin-top: 15px; }
         .countdown-wrapper-section.revealed { max-height: 250px; opacity: 1; }
 
@@ -105,7 +101,6 @@
 
         .countdown-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--silver); margin-top: 10px; }
 
-        /* Page 3: Locked Map Positioning */
         .venue-card-container {
             width: 370px;
             display: flex;
@@ -169,7 +164,6 @@
             color: var(--bg-burgundy);
         }
 
-        /* Absolute Very Bottom Section adjusted higher up */
         .bottom-absolute-footer {
             position: absolute;
             bottom: 12px;
@@ -203,11 +197,9 @@
             color: var(--bg-burgundy);
         }
 
-        /* Golden heart */
         .golden-heart { font-size: 20px; color: var(--gold); margin-top: 0px; text-shadow: 0 0 10px rgba(212, 175, 55, 0.8); animation: pulse-heart 1.5s infinite ease-in-out; }
         @keyframes pulse-heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-        /* Pagination Dots Indicator */
         .page-indicators { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
         .page-indicators.visible { opacity: 1; }
         .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(212, 175, 55, 0.4); transition: background 0.3s ease; }
@@ -219,16 +211,14 @@
     <div id="particles-container"></div>
 
     <audio id="bgAudio" loop>
-        <source src="background-music.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
     <div class="invitation-wrapper">
         <button class="audio-control-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Toggle Audio">🔇</button>
 
-        <!-- PAGE 1: PURE ENTRY PAGE IMAGE WITH FULL TAP-TO-OPEN INTERACTION -->
         <div class="section" id="section-envelope" onclick="openEnvelope()"></div>
 
-        <!-- PAGE INDICATORS -->
         <div class="page-indicators" id="pageIndicators">
             <div class="dot active" id="dot-0"></div>
             <div class="dot" id="dot-1"></div>
@@ -237,9 +227,7 @@
 
         <div class="pages-container" id="pagesContainer">
 
-            <!-- SHEET 1 (-5) -->
             <div class="section" id="section-page1" style="justify-content: flex-start;">
-                <!-- Scratch Card Box: Curved rectangle with golden outline, rendered instantly -->
                 <div class="scratch-box" id="scratchBoxContainer">
                     <div class="scratch-reveal-text" id="scratchRevealText">
                         17th September 2026<br>
@@ -248,7 +236,6 @@
                     <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
                 </div>
 
-                <!-- Hidden Countdown Section that expands once revealed -->
                 <div class="countdown-wrapper-section" id="countdownWrapperSection">
                     <div class="countdown-title-wrapper">
                         <div class="countdown-title-line"></div>
@@ -279,10 +266,8 @@
                 </div>
             </div>
 
-            <!-- SHEET 2 (-6) -->
             <div class="section" id="section-page2"></div>
 
-            <!-- SHEET 3 (-7): Locked Map Positioning + Exact Reference Heart -->
             <div class="section" id="section-page3">
                 <div class="venue-card-container">
                     <div class="map-frame-wrapper">
@@ -292,7 +277,6 @@
                     <a href="https://maps.google.com/?q=Lara+Courtyard+Avadi+Chennai" target="_blank" class="directions-btn">Get Directions</a>
                 </div>
 
-                <!-- Absolute bottom footer with both button and heart moved higher up -->
                 <div class="bottom-absolute-footer">
                     <button class="celebrate-btn" onclick="triggerCelebrateConfetti()">Celebrate with us</button>
                     <div class="golden-heart">♥</div>
@@ -303,7 +287,6 @@
     </div>
 
     <script>
-        // Falling petals and glitter initialization from reference file ending in 67
         const particlesContainer = document.getElementById('particles-container');
         
         for (let i = 0; i < 15; i++) {
@@ -362,6 +345,10 @@
 
             sectionEnvelope.classList.add('opening');
             pageIndicators.classList.add('visible');
+
+            setTimeout(() => {
+                sectionEnvelope.style.display = 'none';
+            }, 1200);
 
             initScratchCard();
         }
@@ -477,11 +464,9 @@
                 isDrawing = true;
                 moveCount += 2;
                 processScratch(e);
-                e.preventDefault();
             });
             canvas.addEventListener('touchmove', (e) => {
                 processScratch(e);
-                e.preventDefault();
             });
             window.addEventListener('touchend', () => { isDrawing = false; });
         }
