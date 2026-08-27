@@ -51,16 +51,8 @@
             background-color: #3a0d16; 
         }
 
-        /* Encoded URLs to safely handle spaces and special characters */
-        #section-envelope { background-image: url('./Untitled%20-%20August%2016,%202026%20at%2016.56.49-4%20(1).png'); }
-        #section-page1    { background-image: url('./Untitled%20-%20August%2016,%202026%20at%2016.56.49-5%20(1).png'); }
-        #section-page2    { background-image: url('./Untitled%20-%20August%2016,%202026%20at%2016.56.49-6.png'); }
-        #section-page3    { background-image: url('./Untitled%20-%20August%2016,%202026%20at%2016.56.49-7.png'); }
-
+        /* Standardized exact background paths */
         #section-envelope { 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             position: absolute;
             top: 0;
             left: 0;
@@ -68,8 +60,21 @@
             height: 100%;
             z-index: 20;
             cursor: pointer;
+            background-image: url('Untitled - August 16, 2026 at 16.56.49-4 (1).png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.0s ease;
             transform-origin: center center;
+        }
+
+        #section-page1 { background-image: url('Untitled - August 16, 2026 at 16.56.49-5 (1).png'); }
+        #section-page2 { background-image: url('Untitled - August 16, 2026 at 16.56.49-6.png'); }
+        #section-page3 { 
+            background-image: url('Untitled - August 16, 2026 at 16.56.49-7.png'); 
+            justify-content: flex-start;
+            padding-top: 220px; 
+            padding-bottom: 25px;
         }
 
         #section-envelope.opening {
@@ -226,7 +231,7 @@
     <div class="invitation-wrapper">
         <button class="audio-control-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Toggle Audio">🔇</button>
 
-        <div class="section" id="section-envelope" onclick="openEnvelope()"></div>
+        <div id="section-envelope" onclick="openEnvelope()"></div>
 
         <div class="page-indicators" id="pageIndicators">
             <div class="dot active" id="dot-0"></div>
@@ -375,7 +380,7 @@
         }
 
         const pagesContainer = document.getElementById('pagesContainer');
-        const sections = document.querySelectorAll('.section:not(#section-envelope)');
+        const sections = document.querySelectorAll('.section');
         
         pagesContainer.addEventListener('scroll', () => {
             let index = Math.round(pagesContainer.scrollTop / pagesContainer.clientHeight);
