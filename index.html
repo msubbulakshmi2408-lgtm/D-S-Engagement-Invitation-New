@@ -59,7 +59,7 @@
             height: 100%;
             z-index: 40;
             cursor: pointer;
-            background-image: url('./page-envelope.png');
+            background-image: url('page-envelope.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -67,11 +67,11 @@
             transform-origin: center center;
         }
 
-        /* Background image paths with explicit relative URLs */
-        #section-page1 { background-image: url('./page-1.png'); }
-        #section-page2 { background-image: url('./page-2.png'); }
+        /* Direct image URLs matching GitHub repository */
+        #section-page1 { background-image: url('page-1.png'); }
+        #section-page2 { background-image: url('page-2.png'); }
         #section-page3 { 
-            background-image: url('./page-3.png'); 
+            background-image: url('page-3.png'); 
             justify-content: flex-start;
             padding-top: 220px; 
             padding-bottom: 25px;
@@ -231,7 +231,7 @@
     <div class="invitation-wrapper">
         <button class="audio-control-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Toggle Audio">🔇</button>
 
-        <div id="section-envelope" onclick="openEnvelope()"></div>
+        <div id="section-envelope"></div>
 
         <div class="page-indicators" id="pageIndicators">
             <div class="dot active" id="dot-0"></div>
@@ -324,25 +324,11 @@
             particlesContainer.appendChild(glitter);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('scratchCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 320;
-            canvas.height = 110;
-
-            ctx.fillStyle = '#4a121d';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#f3e5ab';
-            ctx.font = '16px Montserrat, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('✨ Scratch Here to Reveal ✨', canvas.width / 2, canvas.height / 2 + 6);
-        });
-
-        let scratchInitialized = false;
+        // Attach envelope click handler directly in script
+        const sectionEnvelope = document.getElementById('section-envelope');
+        sectionEnvelope.addEventListener('click', openEnvelope);
 
         function openEnvelope() {
-            const sectionEnvelope = document.getElementById('section-envelope');
             const pageIndicators = document.getElementById('pageIndicators');
             
             const audio = document.getElementById('bgAudio');
@@ -362,7 +348,7 @@
 
             setTimeout(() => {
                 sectionEnvelope.style.display = 'none';
-            }, 1200);
+            }, 1000);
 
             initScratchCard();
         }
@@ -403,9 +389,6 @@
         }
 
         function initScratchCard() {
-            if (scratchInitialized) return;
-            scratchInitialized = true;
-
             const canvas = document.getElementById('scratchCanvas');
             const ctx = canvas.getContext('2d');
             
